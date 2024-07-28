@@ -18,7 +18,7 @@ class MarketDataService{
         getData()
     }
     
-    private func getData(){
+    func getData(){
         
         guard let url = URL(string: "https://api.coingecko.com/api/v3/global") else {return}
         
@@ -26,7 +26,6 @@ class MarketDataService{
             .decode(type: GlobalData.self, decoder: JSONDecoder())
             .sink(receiveCompletion: NetworkingManager.handleComplition, receiveValue: {[weak self] (globalData) in
                 self?.marketdata = globalData.data
-                print(globalData)
             })
         
            
